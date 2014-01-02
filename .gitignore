@@ -8,3 +8,6 @@ pom.xml
 /.env
 /target
 .lein-repl-history
+.nrepl-port
+/resources/public/js/app.js
+/resources/public/js/out

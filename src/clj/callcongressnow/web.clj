@@ -1,5 +1,6 @@
 (ns callcongressnow.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:require [callcongressnow.views :refer [page]]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
@@ -23,12 +24,8 @@
 (defroutes app
   (ANY "/repl" {:as req}
        (drawbridge req))
-  (GET "/" []
-       {:status 200
-        :headers {"Content-Type" "text/plain"}
-        :body (pr-str ["Hello" :from 'Heroku])})
-  (ANY "*" []
-       (route/not-found (slurp (io/resource "404.html")))))
+  (GET "/" [] (page "index"))
+  (route/resources "/"))
 
 (defn wrap-error-page [handler]
   (fn [req]
