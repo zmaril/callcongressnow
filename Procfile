@@ -1,1 +1,1 @@
-web: lein with-profile production trampoline run -m callcongressnow.web
+web: java $JVM_OPTS -cp target/callcongressnow-standalone.jar clojure.main -m hello.world $PORT
