@@ -22,7 +22,8 @@
                  [org.clojure/clojurescript "0.0-2127"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
                  [secretary "0.4.0"]
-                 [cljs-http "0.1.2"]]
+                 [cljs-http "0.1.2"]
+                 [zmaril/om "0.1.0-SNAPSHOT"]]
   :min-lein-version "2.1.2"
   :plugins [[environ/environ.lein "0.2.1"]
             [lein-cljsbuild "1.0.1"]
