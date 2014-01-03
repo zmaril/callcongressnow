@@ -57,7 +57,7 @@
                                     {:as :json
                                      :query-params pms})
                         :body :results first :phone)
-              phone  (if (= "me" bioguide_id) my-number phone)
+              phone  (if (= "me" bioguide_id) (env :my-number) phone)
               phone (apply str (filter #(not= % \-) phone))
  
               twiml (TwiMLResponse.)
