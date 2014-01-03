@@ -14,7 +14,7 @@
                  [cheshire "5.2.0"]
                  [clj-http "0.7.8" :exclusions [org.clojure/clojure]]
                  [com.twilio.sdk/twilio-java-sdk "3.3.15"]
-
+                 [environ "0.4.0"]
                  ;; CLJS
                  [org.clojure/clojurescript "0.0-2127"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
