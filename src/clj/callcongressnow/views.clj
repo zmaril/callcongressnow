@@ -11,6 +11,5 @@
    [:body
     [:div {:id (str nstr "container") :class "container"}]
     (include-js "/js/react.js")
-    (include-js "/js/out/goog/base.js")
     (include-js "/js/app.js")]))
 
