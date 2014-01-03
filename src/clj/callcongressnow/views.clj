@@ -7,9 +7,9 @@
     [:title "Call Congress Now"]
     (include-css "/css/bootstrap.min.css")
     (include-css "/css/index.css")
-    (include-js "//static.twilio.com/libs/twiliojs/1.1/twilio.min.js")]
+    (include-js "//static.twilio.com/libs/twiliojs/1.1/twilio.min.js")
+    (include-js "/js/react.js")]
    [:body
     [:div {:id (str nstr "container") :class "container"}]
-    (include-js "/js/react.js")
     (include-js "/js/app.js")]))
 

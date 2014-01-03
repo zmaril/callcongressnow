@@ -35,32 +35,30 @@
            "But what could I do? I'm just a young twenty something who
            spends too much time on the computer. Influencing
            legislators seemed like an impossible task for one person,
-           especially a nobody like me. It seemed the top comment on
-           almost every article repeated the same idea though. By
-           calling your representatives and senators and voicing your
-           opinion, somehow you could influence their actions. In the
-           dilemma of a citizen in a large nation, one phone didn't
-           seem like it would be enough to really make that much of
-           difference. So I started sniffing around how to build a
-           system to increase participation in government by the
-           average citizen.")
+           especially a nobody like me. The top comment of every
+           article on the shutdown and the NSA business echoed the
+           same advice to call senators and representatives and let
+           fly your grievances. In the dilemma of a citizen in a large
+           democratic nation, one phone call didn't seem like it would
+           be enough to really make that much of difference. So I
+           started sniffing around how to build a system to increase
+           participation in government by the average citizen.")
     (dom/p nil
            )
     (dom/h2 nil
             "Generalization")
     (dom/p nil
            "I go to school at one of the most conservative and
-           republican public universities in the United States. While
-           I was pondering how to get people to call in about the NSA
-           and shutdown, I was overhearing people venting vitriol over
-           Obamacare everyday, almost everywhere. I'm admittedly more
-           liberal than conservative on the American political
-           spcetrum, but I can appreciate that there is a group of
-           people who felt that same lack of agency I did but over
-           completely different issues. I figured it would be simpler
-           to create an unbiased tool than a biased one, so I focused
-           on creating something that would let anyone voice their
-           opinion to Congress.")
+           republican universities in the United States. While I was
+           mulling over my dilemma, I was overhearing people venting
+           vitriol over Obamacare everyday, almost everywhere. I'm
+           admittedly more liberal than conservative on the American
+           political spcetrum, but I can appreciate that there is a
+           group of people who felt that same lack of agency I did but
+           over completely different issues. I figured it would be
+           simpler to create an unbiased tool than a biased one, so I
+           focused on creating something that would let anyone quickly
+           voice their opinion to Congress.")
     (dom/h2 nil 
             "Specification")
     (dom/p nil
@@ -70,10 +68,10 @@
            anywhere, to call the Washington office of any member of
            Congress at any time (I can make no guarantees about who,
            if anyone, will pick up though). It's a pretty rough sketch
-           of what I have in mind, more of a proof of concept than a
-           minimum viable product. Many ideas were left on the cutting
-           room floor. I do hope though that \"Call Congress Now\"
-           will be used and be found useful. If you have any comments,
+           of what I have in mind, more of a proof of concept than
+           anything else. Many ideas were left on the cutting room
+           floor. I do hope though that \"Call Congress Now\" will be
+           used and be found useful. If you have any comments,
            complaints, or criticisms, please "
            (dom/a #js {:href "/contact"} "contact me") ". For those
            interested in that sort of thing, the " 
@@ -91,8 +89,8 @@
             #js {:href "http://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/"} 
             "David Nolen for his work on Clojurescript and Om") 
            ". Bootstrap and the \"Journal\" theme from Bootswatch was
-           used as well. The source code for this website is under a
-           thousand lines thanks to "
+           used as well. The source code for this website is minimal
+           thanks to "
            (dom/a #js {:href "https://www.twilio.com/"} "Twilio") ", "
            (dom/a #js {:href "https://www.heroku.com/"} "Heroku") ", and the "
            (dom/a #js {:href "http://sunlightfoundation.com/"} "Sunlight Foundation's ")

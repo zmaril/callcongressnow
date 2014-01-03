@@ -28,7 +28,8 @@
                         :output-to "resources/public/js/app.js"
                         :output-dir "resources/public/js/out"
                         :optimizations :advanced
-                        :externs ["resources/public/js/react.js"]
+                        :externs ["resources/public/js/react.js"
+                                  "resources/public/js/twilio.js"]
                         :closure-warnings
                         {:non-standard-jsdoc :off
                          :externs-validation :off}}}]}
