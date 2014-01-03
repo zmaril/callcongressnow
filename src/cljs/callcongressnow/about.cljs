@@ -18,20 +18,19 @@
            "\"Call Congress Now\" is meant to provide citizens a
            conduit to the legislators who would influence public
            policy without filtering or otherwise distorting their
-           points of view. It's the first draft of a digital bridge
-           from the average citizen to the legislators over on yonder
-           by the Potomac.")
+           points of view.")
     (dom/h2 nil 
             "Motivation")
     (dom/p nil
-           "The NSA spying scandals and the government shutdown were
-           what originally interested me in the happenings in
-           Washington. The breadth of the surveillance programs and
-           the audacity of a group of legislators to shutdown the
-           government infuriated and saddened me. Truthfully, I let
-           both these events took a stressful toll on my
-           relationships, both personal and professional. For whatever
-           reason both of these events hit me hard.")
+           "The breadth of the recently revealed NSA surveillance
+           programs and the audacity of a group of legislators to
+           shutdown the government infuriated and saddened me. For
+           whatever reason, both these events hit me hard and I let
+           them create too much stress in my life. Someone older than
+           myself told me that growing disillusioned with the
+           government is part of becoming an adult. I didn't want to
+           quite be an adult yet so I set out to find ways to
+           influence the government.")
     (dom/p nil
            "But what could I do? I'm just a young twenty something who
            spends too much time on the computer. Influencing

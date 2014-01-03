@@ -64,7 +64,7 @@
               dial (Dial.)] 
           (.append dial (com.twilio.sdk.verbs.Number. phone))
           (.append dial (Client. "jenny"))
-          (.setCallerId dial phone-number)
+          (.setCallerId dial (env :phone-number))
           (.append twiml dial)         
           (-> (.toXML twiml)
               resp/response 
