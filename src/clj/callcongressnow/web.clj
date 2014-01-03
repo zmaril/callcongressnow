@@ -9,7 +9,32 @@
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
             [ring.adapter.jetty :as jetty]
-            [environ.core :refer [env]]))
+            [cheshire.core :as json]
+            [clj-http.client :as client]
+            [environ.core :refer [env]])
+  (:import [com.twilio.sdk
+            TwilioRestClient
+            TwilioRestException]
+           [com.twilio.sdk.resource.instance
+            Account Call]
+           [com.twilio.sdk.resource.factory
+            CallFactory]
+           [com.twilio.sdk.client
+            TwilioCapability
+            TwilioCapability$DomainException]
+           [com.twilio.sdk.verbs
+            Dial Client 
+            TwiMLResponse
+            TwiMLException]))
+
+(def capability (TwilioCapability. (env :twilio-sid) (env :twilio-auth)))
+(.allowClientOutgoing capability (env :app-sid))
+(def client (TwilioRestClient. (env :twilio-sid) (env :twilio-auth)))
+(def main-account (.getAccount client))
+(def call-factory (.getCallFactory main-account))
+
+(def legislators-url
+  "https://congress.api.sunlightfoundation.com/legislators")
 
 (defroutes app
   (GET "/about"   [] (page "about"))
@@ -17,6 +42,33 @@
   (GET "/profile" [] (resp/redirect "/"))
   (GET "/profile/:id" [] (page "profile"))
   (GET "/" [] (page "index"))
+  (GET "/token" {params :query-params} 
+       (-> {:token (.generateToken capability)}
+           json/generate-string
+           resp/response
+           (resp/content-type "text/javascript")
+           (update-in [:body]
+                      #(str (get params "callback") "(" % ")"))))
+  (POST "/voice" [bioguide_id]
+        (println bioguide_id)
+        (let [pms  {"apikey"    sunlight-key
+                    "bioguide_id"  bioguide_id}
+              phone (-> (client/get legislators-url 
+                                    {:as :json
+                                     :query-params pms})
+                        :body :results first :phone)
+              phone  (if (= "me" bioguide_id) my-number phone)
+              phone (apply str (filter #(not= % \-) phone))
+ 
+              twiml (TwiMLResponse.)
+              dial (Dial.)] 
+          (.append dial (com.twilio.sdk.verbs.Number. phone))
+          (.append dial (Client. "jenny"))
+          (.setCallerId dial phone-number)
+          (.append twiml dial)         
+          (-> (.toXML twiml)
+              resp/response 
+              (resp/content-type "application/xml"))))
   (route/resources "/"))
 
 (defn wrap-error-page [handler]
