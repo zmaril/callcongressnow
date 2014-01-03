@@ -11,18 +11,13 @@
                  [compojure "1.1.6"]
                  [ring/ring-jetty-adapter "1.1.0"]
                  [ring/ring-devel "1.1.0"]
-                 [ring-basic-authentication "1.0.1"]
-                 [environ "0.2.1"]
-                 [com.cemerick/drawbridge "0.0.6"]
                  [cheshire "5.2.0"]
-                 [clj-http "0.7.8"]
+                 [clj-http "0.7.8" :exclusions [org.clojure/clojure]]
                  [com.twilio.sdk/twilio-java-sdk "3.3.15"]
 
                  ;; CLJS
                  [org.clojure/clojurescript "0.0-2127"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
-                 [secretary "0.4.0"]
-                 [cljs-http "0.1.2"]
                  [zmaril/om "0.1.0-SNAPSHOT"]]
   :min-lein-version "2.1.2"
   :source-paths ["src/clj"]
