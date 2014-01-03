@@ -2,11 +2,11 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]            
-            [call-congress-now.app :refer 
+            [callcongressnow.app :refer 
              [navbar footer]]
-            [call-congress-now.state :refer 
+            [callcongressnow.state :refer 
              [app-state]]))
-
+(enable-console-print!)
 (defn about [_ _]
   (om/component
    (dom/div 
@@ -102,6 +102,7 @@
            API") ". Finally, thanks to all my friends and family who
            have put up with me ranting about Congress the past few
            months and have helped test and use this project." ))))
+
 (defn about-app [app]
   (reify 
     om/IRender
@@ -110,7 +111,6 @@
                (om/build navbar app)
                (om/build about  app)))))
 
-(om/root app-state about-app
-         (.getElementById js/document "container"))
-
+(when-let [root (.getElementById js/document "aboutcontainer")]
+  (om/root app-state about-app root))
 

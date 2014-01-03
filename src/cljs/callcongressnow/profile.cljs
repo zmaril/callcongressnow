@@ -8,7 +8,7 @@
              [navbar]]
             [callcongressnow.twilio :refer 
              [call-button]]
-            [callcongressnow.utils :refer [jsonp]]))
+            [callcongressnow.utils :refer [jsonp apikey sunlighturl]]))
 
 (enable-console-print!)
 
@@ -23,10 +23,9 @@
 
 (defn find-by-id [app id]
   (go     
-   (-> (jsonp 
-        "http://congress.api.sunlightfoundation.com/legislators" 
+   (-> (jsonp sunlighturl
         {"bioguide_id" id
-         "apikey" "0c5186d6a83149a5abdc4b29f76ae080"})
+         "apikey" apikey})
        <!
        (js->clj :keywordize-keys true)
        :results
@@ -109,5 +108,7 @@
                (om/build navbar app)
                (om/build profile app {:opts {:id (get-id)}})))))
 
-(om/root profile-state profile-app
-         (.getElementById js/document "container"))
+(when-let [root (.getElementById js/document "profilecontainer")]
+  (om/root profile-state profile-app root))
+
+

@@ -51,11 +51,7 @@
                                  (om/build jumbotron app)
                                  (om/build legislator-box app)))))))
 
-(om/root app-state index-app
-         (.getElementById js/document "container"))
-
-(go (let [{:keys [token]} (js->clj (<! (jsonp "/token" nil)) 
-                           :keywordize-keys true)]
-      (js/Twilio.Device.setup token #js {:debug true})))
+(when-let [root (.getElementById js/document "indexcontainer")]
+  (om/root app-state index-app root))
 
 

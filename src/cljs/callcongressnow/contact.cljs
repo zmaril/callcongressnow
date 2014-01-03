@@ -2,7 +2,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]            
-            [call-congress-now.app :refer 
+            [callcongressnow.app :refer 
              [navbar footer]]
             [callcongressnow.state :refer 
              [app-state]]
@@ -48,7 +48,8 @@
                (om/build navbar app)
                (om/build contact  app)))))
 
-(om/root app-state contact-app
-         (.getElementById js/document "container"))
+(when-let [root (.getElementById js/document "contactcontainer")]
+  (om/root app-state contact-app root))
+
 
 

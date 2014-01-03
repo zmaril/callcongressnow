@@ -4,26 +4,19 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [ring.util.response :as resp]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.basic-authentication :as basic]
-            [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]))
 
-(defn- authenticated? [user pass]
-  ;; TODO: heroku config:add REPL_USER=[...] REPL_PASSWORD=[...]
-  (= [user pass] [(env :repl-user false) (env :repl-password false)]))
-
-(def ^:private drawbridge
-  (-> (drawbridge/ring-handler)
-      (session/wrap-session)
-      (basic/wrap-basic-authentication authenticated?)))
-
 (defroutes app
-  (ANY "/repl" {:as req}
-       (drawbridge req))
+  (GET "/about"   [] (page "about"))
+  (GET "/contact" [] (page "contact"))
+  (GET "/profile" [] (resp/redirect "/"))
+  (GET "/profile/:id" [] (page "profile"))
   (GET "/" [] (page "index"))
   (route/resources "/"))
 

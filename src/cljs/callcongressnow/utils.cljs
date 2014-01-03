@@ -5,6 +5,10 @@
            [goog Uri]
            [goog.ui IdGenerator]))
 
+(def apikey "0c5186d6a83149a5abdc4b29f76ae080")
+(def sunlighturl
+  "http://congress.api.sunlightfoundation.com/legislators" )
+
 (defn jsonp [url params]
   (let [out (chan)
         jsonp (Jsonp. (Uri. url

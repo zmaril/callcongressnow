@@ -4,7 +4,7 @@
   (:require [om.core :as om :include-macros true]
             [om.dom  :as dom :include-macros true]
             [cljs.core.async :refer [put! <! >! <!! chan timeout]]
-            [callcongressnow.utils :refer [jsonp]]
+            [callcongressnow.utils :refer [jsonp apikey sunlighturl]]
             [secretary.core :as secretary])
   (:import [goog Uri]))
 
@@ -32,20 +32,26 @@
 
 (defn find-local [app _]
   (go (let [coords  (<!  (location-please))
-            results (<! (jsonp "/locate" coords))
+            results (<! (jsonp (str sunlighturl "/locate")
+                               (assoc  coords "apikey" apikey)))
             results (js->clj results :keywordize-keys true)]
-        (update-legislators app results)))
+        (update-legislators app (:results results))))
   false)
 
 (defn find-query [app query]
-  (go (let [results (<! (jsonp "/query" {"query" query}))
+  (go (let [results (<! (jsonp sunlighturl {"query" query
+                                            "apikey" apikey
+                                            "in_office" "true"}))
             results (js->clj results :keywordize-keys true)]
-        (update-legislators app results)))
+        (update-legislators app (:results results))))
   false)
 
 (defn find-all [app _]
-  (go (let [results (<! (jsonp "/all" nil))
+  (go (let [results (<! (jsonp sunlighturl
+                               {"apikey" apikey
+                                "per_page" "all"
+                                "in_office" "true"}))
             results (js->clj results :keywordize-keys true)]
-        (update-legislators app results)))
+        (update-legislators app (:results results))))
   false)
 

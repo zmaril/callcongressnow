@@ -25,29 +25,18 @@
                  [cljs-http "0.1.2"]
                  [zmaril/om "0.1.0-SNAPSHOT"]]
   :min-lein-version "2.1.2"
-  :plugins [[environ/environ.lein "0.2.1"]
-            [lein-cljsbuild "1.0.1"]
-            [lein-ring "0.8.7"]]
-  :hooks [environ.leiningen.hooks
-          leiningen.cljsbuild]
   :source-paths ["src/clj"]
-  :profiles {:production {:env {:production true}}}
   :cljsbuild 
-  {
-   :builds [{:id "dev"
+  {:builds [{:id "dev"
              :source-paths ["src/cljs"]
              :compiler {
                         :output-to "resources/public/js/app.js"
                         :output-dir "resources/public/js/out"
-                        :optimizations :none
-                        :source-map true}}
-            {:id "release"
-             :source-paths ["src/cljs"]
-             :compiler {
-                        :output-to "resources/public/js/app.js"
-                        :optimizations :simple
-                        :pretty-print false
-                        :output-wrapper false
+                        :optimizations :advanced
                         :externs ["resources/public/js/react.js"]
                         :closure-warnings
-                        {:non-standard-jsdoc :off}}}]})
+                        {:non-standard-jsdoc :off
+                         :externs-validation :off}}}]}
+  :plugins [[environ/environ.lein "0.2.1"]
+            [lein-cljsbuild "1.0.1"]
+            [lein-ring "0.8.7"]])
