@@ -1,6 +1,9 @@
 (ns callcongressnow.twilio
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [callcongressnow.state :refer [app-state]]
+            [callcongressnow.utils :refer [jsonp]]
             [om.core :as om :include-macros true]
+            [cljs.core.async :refer [<!]]
             [om.dom  :as dom :include-macros true]))
 
 (defn call-legislator 
@@ -50,3 +53,8 @@
                    :style #js {:display "none"}
                    :ref (hangup-ref bioguide_id)}
               (str "Hang up"))))))
+
+(go (let [{:keys [token]} (js->clj (<! (jsonp "/token" nil)) 
+                           :keywordize-keys true)]
+      (js/Twilio.Device.setup token #js {:debug true})))
+

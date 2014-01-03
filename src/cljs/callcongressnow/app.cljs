@@ -36,8 +36,4 @@
                    (dom/a #js 
                           {:href "https://github.com/zmaril/callcongressnow"} "Source")))))))))
 
-(go (let [{:keys [token]} (js->clj (<! (jsonp "/token" nil)) 
-                           :keywordize-keys true)]
-      (js/Twilio.Device.setup token #js {:debug true})))
-
 
