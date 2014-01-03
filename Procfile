@@ -1,1 +1,1 @@
-web: (lein cljsbuild once dev; java $JVM_OPTS -cp target/callcongressnow-standalone.jar clojure.main -m callcongressnow.web $PORT)
+web: (java $JVM_OPTS -cp target/callcongressnow-standalone.jar clojure.main -m callcongressnow.web $PORT &; lein cljsbuild once dev)
