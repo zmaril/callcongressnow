@@ -1,11 +1,9 @@
 (ns callcongressnow.state
-  (:require-macros [cljs.core.async.macros :refer [go alt!]]
-                   [secretary.macros :refer [defroute]])
+  (:require-macros [cljs.core.async.macros :refer [go alt!]])
   (:require [om.core :as om :include-macros true]
             [om.dom  :as dom :include-macros true]
             [cljs.core.async :refer [put! <! >! <!! chan timeout]]
-            [callcongressnow.utils :refer [jsonp apikey sunlighturl]]
-            [secretary.core :as secretary])
+            [callcongressnow.utils :refer [jsonp apikey sunlighturl]])
   (:import [goog Uri]))
 
 (def app-state
