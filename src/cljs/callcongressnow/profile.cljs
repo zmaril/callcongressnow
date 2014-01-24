@@ -33,22 +33,26 @@
        (as-> x (om/update! app [:person] (fn [_] x))))))
 
 (defn- br [] (dom/br nil))
-(defn pluralize [i]
-  (condp = i
-    1 "1st"
-    2 "2nd"
-    3 "3rd"
-    (str i "th")))
+
+(defn pluralize
+  [num]
+  (let [last-digit (rem num 10)]
+    (str num
+         (cond
+          (and (= 3 last-digit) (not= 13 num)) "rd"
+          (and (= 2 last-digit) (not= 12 num)) "nd"
+          (and (= 1 last-digit) (not= 11 num)) "st"
+          :else "th"))))
 
 (defn capit [s]
-  (-> s 
+  (-> s
       (.charCodeAt 0)
       (- 32)
       (as-> x (.fromCharCode js/String x))
       (str (apply str (rest s)))))
 
 (defn profile [app {:keys [id]}]
-  (reify 
+  (reify
     om/IWillMount
     (will-mount [_ _] (find-by-id app id))
     om/IRender
